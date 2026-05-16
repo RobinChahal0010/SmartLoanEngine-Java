@@ -136,7 +136,7 @@ Final Loan Decision
 
 ## ✅ Approved Loan Case
 
-<img width="850" src="./assets
+<img width="850" src="assets
 /Screenshot 2026-05-16 220359.png"/>
 
 ---
