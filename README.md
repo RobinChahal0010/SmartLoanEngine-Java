@@ -143,7 +143,7 @@ Final Loan Decision
 
 ## ❌ Rejected Loan Case
 
-<img width="850" src="https://i.imgur.com/Q6v5N8F.png"/>
+<img width="850" src="assets/Screenshot 2026-05-16 220543.png"/>
 
 ---
 
