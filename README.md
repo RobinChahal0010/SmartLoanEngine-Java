@@ -8,10 +8,7 @@ This project simulates how financial institutions evaluate loan applications bas
 ## Key Features
 
 * **Custom Credit Scoring System**
-  Calculates a score (300–900) based on:
-<p align="center">
-  <img src="https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif" width="100%" />
-</p>
+ 
 
 <h1 align="center">💳 Smart Loan Engine</h1>
 
