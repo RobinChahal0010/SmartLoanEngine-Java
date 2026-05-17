@@ -21,7 +21,7 @@ public class CreditScoreCalculator {
 
         score+=Math.min(c.yearsActive*20,100);
 
-        score -=c.failedTransactions*50;
+        score -=c.failedTransactions*20;
 
         return Math.max(300,Math.min(score,900));
     }
