@@ -89,7 +89,7 @@ public class main {
             type
         );
 
-        // Calculate Credit Score
+        
         int score =
             CreditScoreCalculator.calculateScore(c);
 
