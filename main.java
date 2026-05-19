@@ -77,7 +77,7 @@ public class main {
             return;
         }
 
-        // Create Customer Object
+        
         Customer c = new Customer(
             avgBalance,
             transactions,
