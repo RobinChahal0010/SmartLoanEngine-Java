@@ -37,7 +37,7 @@ public class main {
         System.out.print("Enter Requested Loan Amount: ");
         double requestedLoan = sc.nextDouble();
 
-        // Loan Type Selection
+        
         System.out.println("\nSelect Loan Type:");
         System.out.println("1. CAR");
         System.out.println("2. HOME");
@@ -67,7 +67,7 @@ public class main {
                 return;
         }
 
-        // Input Validation
+        
         if(avgBalance < 0 ||
            monthlyIncome <= 0 ||
            requestedLoan <= 0) {
