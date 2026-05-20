@@ -9,7 +9,7 @@ public class LoanService {
 
         int tenure = 0;
 
-        // HOME LOAN RULES
+        
         if(c.loanType == LoanType.HOME) {
 
             if(score >= 750) {
