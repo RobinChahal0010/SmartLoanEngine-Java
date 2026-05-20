@@ -36,7 +36,7 @@ public class LoanService {
             }
         }
 
-        // CAR LOAN RULES
+        
         else if(c.loanType == LoanType.CAR) {
 
             if(score >= 700) {
