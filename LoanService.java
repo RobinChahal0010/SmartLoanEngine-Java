@@ -87,7 +87,7 @@ public class LoanService {
             }
         }
 
-        // Dynamic Interest Rate
+        
         double interest =
             InterestRateCalculator.getRate(score, c.loanType);
 
