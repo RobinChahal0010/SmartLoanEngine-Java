@@ -63,7 +63,7 @@ public class LoanService {
             }
         }
 
-        // EDUCATION LOAN RULES
+        
         else if(c.loanType == LoanType.EDUCATION) {
 
             if(score >= 550) {
