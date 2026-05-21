@@ -119,7 +119,7 @@ public class LoanService {
             return;
         }
 
-        // Add approved loan to history
+        
         c.loanHistory.add(
             new LoanRecord(
                 c.loanType.toString(),
