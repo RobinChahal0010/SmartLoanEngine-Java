@@ -100,7 +100,7 @@ public class LoanService {
 
         double totalEMI = emi + c.existingEMI;
 
-        // EMI BURDEN CHECK
+        
         if(totalEMI > 0.4 * c.monthlyIncome) {
 
             System.out.println("\n================================");
