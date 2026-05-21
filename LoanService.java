@@ -128,7 +128,7 @@ public class LoanService {
             )
         );
 
-        // APPROVAL OUTPUT
+        
         System.out.println("\n================================");
         System.out.println("      LOAN APPROVAL RESULT");
         System.out.println("================================");
