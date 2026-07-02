@@ -25,5 +25,6 @@ public class CreditScoreCalculator {
 
         return Math.max(300,Math.min(score,900));
     }
+    public static String getCreditRating
     
 }
