@@ -35,5 +35,5 @@ public class CreditScoreCalculator {
             } else {
             return "POOR";
         }
-    
+    }
 }
