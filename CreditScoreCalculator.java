@@ -30,5 +30,7 @@ public class CreditScoreCalculator {
             return "EXCELLENT";
             } else if (score >= 700) {
             return "GOOD";
+            } else if (score >= 600) {
+            return "FAIR";
     
 }
