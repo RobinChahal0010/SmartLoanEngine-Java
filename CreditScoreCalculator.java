@@ -28,5 +28,7 @@ public class CreditScoreCalculator {
     public static String getCreditRating(int score){
         if (score >= 800) {
             return "EXCELLENT";
+            } else if (score >= 700) {
+            return "GOOD";
     
 }
