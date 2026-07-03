@@ -98,6 +98,7 @@ public class main {
         System.out.println("\n================================");
         System.out.println("        CREDIT REPORT");
         System.out.println("================================");
+        System.out.println("Credit Score  : " + score);
 
         
         LoanService.evaluateLoan(c, score);
