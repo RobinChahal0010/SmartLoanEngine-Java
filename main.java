@@ -93,6 +93,7 @@ public class main {
         int score =
             CreditScoreCalculator.calculateScore(c);
         String rating =
+            CreditScoreCalculator
 
         
         LoanService.evaluateLoan(c, score);
