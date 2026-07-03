@@ -94,6 +94,7 @@ public class main {
             CreditScoreCalculator.calculateScore(c);
         String rating =
             CreditScoreCalculator
+            .getCreditRating(score);
 
         
         LoanService.evaluateLoan(c, score);
