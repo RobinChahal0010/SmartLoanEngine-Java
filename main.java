@@ -100,6 +100,7 @@ public class main {
         System.out.println("================================");
         System.out.println("Credit Score  : " + score);
         System.out.println("Credit Rating : " + rating);
+        System.out.println("================================");
 
         
         LoanService.evaluateLoan(c, score);
