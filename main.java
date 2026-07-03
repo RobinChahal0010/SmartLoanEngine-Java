@@ -96,6 +96,7 @@ public class main {
             CreditScoreCalculator
             .getCreditRating(score);
         System.out.println("\n================================");
+        System.out.println("        CREDIT REPORT");
 
         
         LoanService.evaluateLoan(c, score);
