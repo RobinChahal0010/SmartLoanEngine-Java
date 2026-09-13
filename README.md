@@ -1,354 +1,130 @@
-# Smart Loan Engine (Java)
-
-A real-world inspired **Car Loan Approval System** built using core Java.
-This project simulates how financial institutions evaluate loan applications based on **creditworthiness, repayment capacity, and risk analysis**.
-
----
-
-## Key Features
-
-* **Custom Credit Scoring System**
-  Calculates a score (300–900) based on:
-<p align="center">
-  <img src="https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif" width="100%" />
-</p>
-
 <h1 align="center">💳 Smart Loan Engine</h1>
 
-<h3 align="center">
-A Real-World Inspired Loan Approval System Built with Java ☕
-</h3>
+<p align="center">
+  A real-world inspired loan approval & risk analysis system built with Core Java ☕
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Java-Core%20Java-orange?style=for-the-badge&logo=java" />
   <img src="https://img.shields.io/badge/OOP-Design-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Finance-Logic-green?style=for-the-badge" />
-  <img src="https://img.shields.io/github/stars/RobinChahal0010/SmartLoanEngine-Java?style=for-the-badge" />
 </p>
 
 ---
 
-# 🧠 About The Project
+## 🧠 Overview
 
-Smart Loan Engine is a **real-world inspired Car Loan Approval System** developed using **Core Java**.
+**Smart Loan Engine** simulates how a financial institution evaluates loan applications using creditworthiness, repayment capacity, and risk analysis.
 
-The project simulates how financial institutions evaluate loan applications using:
+The system calculates a custom credit score, evaluates EMI affordability, analyzes DTI, and produces an approval/rejection decision.
 
-- Credit Scoring
-- EMI Calculation
-- Debt-to-Income Analysis
-- Risk Categorization
-- Approval/Rejection Logic
+## ⚙️ Features
 
-It focuses on **backend decision-making systems** and demonstrates how financial software evaluates customer reliability.
+* 📊 **Custom Credit Scoring**
 
----
-
-# ⚙️ Core Features
-
-## 📊 Credit Score Calculation
-
-The system generates a custom score between **300–900** using:
-
-- Average Bank Balance
-- 5-Year Transaction History
-- Account Age
-- Failed Transactions
-
----
-
-## 💸 EMI Calculation Engine
-
-Uses the standard EMI formula to calculate:
-
-- Monthly EMI
-- Loan affordability
-- Repayment burden
-
----
-
-## 📈 Debt-To-Income (DTI) Validation
-
-Ensures:
-
-```txt
-Total EMI ≤ 40% of Monthly Income
-```
-
-Prevents risky loan approvals.
-
----
-
-## 🚨 Risk Analysis System
-
-Customers are categorized as:
-
-| Score Range | Risk |
-|---|---|
-| 750+ | Low Risk |
-| 650–749 | Medium Risk |
-| Below 650 | High Risk |
-
----
-
-## ❌ Smart Rejection Logic
-
-Loan gets rejected if:
-
-- Credit score is too low
-- EMI burden exceeds safe limit
-- Invalid financial data is entered
-
----
-
-# 🏗️ System Flow
-
-```txt
-User Input
-    ↓
-Credit Score Calculation
-    ↓
-EMI Calculation
-    ↓
-DTI Validation
-    ↓
-Risk Analysis
-    ↓
-Final Loan Decision
-```
-
----
-
-# 🧩 Project Structure
-
-```txt
-├── Customer.java
-├── CreditScoreCalculator.java
-├── EMICalculator.java
-├── LoanService.java
-├── RiskAnalyzer.java
-├── Main.java
-```
-
----
-
-# 🖥️ Screenshots
-
-## ✅ Approved Loan Case
-
-<img width="850" src="assets/Screenshot 2026-05-16 220359.pngg"/>
-
----
-
-## ❌ Rejected Loan Case
-
-<img width="850" src="assets/Screenshot 2026-05-16 220543.png"/>
-
----
-
-# 🚀 Sample Output
-
-```txt
-===== LOAN APPROVAL RESULT =====
-
-CIBIL Score: 782
-Risk Category: Low Risk
-
-LOAN APPROVED ✅
-
-Interest Rate: 8.5%
-Tenure: 5 years
-Monthly EMI: Rs 10258.27
-```
-
----
-
-# 🛠️ Tech Stack
-
-| Technology | Usage |
-|---|---|
-| Java | Core Development |
-| OOP | Modular Design |
-| Arrays | Transaction Analysis |
-| Mathematical Modeling | EMI & Financial Logic |
-
----
-
-# 🧠 Concepts Demonstrated
-
-- Object-Oriented Programming
-- Real-World Business Logic
-- Financial System Design
-- Input Validation
-- Modular Architecture
-- Decision Engines
-
----
-
-# 🌍 Real-World Relevance
-
-In production banking systems, this engine could evolve into:
-
-- Stateless Backend Service
-- REST API
-- Microservice Architecture
-- Database Integrated System
-- Distributed Loan Processing Engine
-
----
-
-# 📚 What I Learned
-
-✔ Designing financial approval systems  
-✔ Implementing real-world logic in Java  
-✔ Writing modular backend code  
-✔ Handling validations & edge cases  
-✔ Translating business rules into software  
-
----
-
-# 🔮 Future Improvements
-
-- REST API Integration
-- MySQL/PostgreSQL Support
-- Spring Boot Version
-- Web Dashboard
-- Multi-user Processing
-- AI-Based Risk Prediction
-
----
-
-# 👨‍💻 Author
-
-## Robinpreet Singh Chahal
-
-☕ Backend Engineering Enthusiast  
-🌴 Coffee & Code Under the Palm  
-🚀 Passionate About Real-World Systems
-
----
-
-<p align="center">
-  <img src="https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif" width="250"/>
-</p>
-
-<h3 align="center">⭐ If you liked this project, consider giving it a star ⭐</h3>
   * Average bank balance
-  * Transaction history (5 years)
+  * 5-year transaction history
   * Account age
   * Failed transactions
 
-* **EMI Calculation Engine**
-  Implements standard EMI formula to compute monthly installments.
+* 💸 **EMI Calculation**
 
-* **DTI (Debt-to-Income Ratio) Check**
-  Ensures loan affordability:
+  * Standard EMI formula
+  * Repayment affordability analysis
 
-  > Total EMI ≤ 40% of monthly income
+* 📈 **DTI Validation**
 
-* **Risk Categorization**
+  * Ensures total EMI stays within **40% of monthly income**
 
-  * Low Risk
-  * Medium Risk
-  * High Risk
+* 🚨 **Risk Analysis**
 
-* **Smart Rejection Logic**
+  * **750+** → Low Risk
+  * **650–749** → Medium Risk
+  * **<650** → High Risk
 
-  * Low credit score
-  * High EMI burden
-  * Invalid inputs
+* ❌ **Smart Approval Logic**
 
----
+  * Credit score
+  * EMI burden
+  * Financial input validation
 
-## Tech Stack
+## 🏗️ Architecture
 
-* **Java (Core)**
-* OOP (Encapsulation, Separation of Concerns)
-* Arrays & Data Handling
-* Mathematical Modeling
-
----
-
-## System Design
-
+```text
+User Input
+    ↓
+Credit Score Engine
+    ↓
+EMI Calculator
+    ↓
+DTI Validation
+    ↓
+Risk Analyzer
+    ↓
+Loan Decision
 ```
-Input → Credit Score → EMI Calculation → DTI Check → Risk Analysis → Decision
-```
 
----
+## 📁 Project Structure
 
-## Project Structure
-
-```
+```text
+src/
 ├── Customer.java
 ├── CreditScoreCalculator.java
 ├── EMICalculator.java
 ├── LoanService.java
 ├── RiskAnalyzer.java
-├── Main.java
+├── LoanType.java
+└── Main.java
 ```
 
----
+## 🖥️ Sample Output
 
-## How It Works
-
-1. User inputs financial data
-2. System calculates internal credit score
-3. Determines interest rate & tenure
-4. Calculates EMI
-5. Applies DTI constraint
-6. Outputs loan approval decision
-
----
-
-## Sample Output
-
-```
-===== LOAN APPROVAL RESULT =====
-CIBIL Score: 740
-Risk Category: Medium Risk
-LOAN APPROVED
-Interest Rate: 8.5%
-Tenure: 5 years
-Monthly EMI: Rs 10258.27
+```text
+================================
+        CREDIT REPORT
+================================
+Credit Score  : 782
+Credit Rating : EXCELLENT
+--------------------------------
+Loan Type     : HOME
+Decision      : APPROVED
+Interest Rate : 8.25%
+Monthly EMI   : ₹20,050
+================================
 ```
 
----
+## 🛠️ Tech Stack
 
-## Note
+**Java • OOP • Arrays • Mathematical Modeling**
 
-This is a **single-user simulation** focused on decision-making logic.
-In real-world systems:
+## 📸 Screenshots
 
-* It would be deployed as a **stateless service**
-* Integrated with databases & APIs
-* Scaled horizontally for multiple users
+### ✅ Approved
 
----
+<p align="center">
+  <img src="assets/Screenshot 2026-05-18 155802.png" width="500"/>
+</p>
 
-## What I Learned
+### ❌ Rejected
 
-* Designing real-world decision systems
-* Applying financial formulas in code
-* Writing clean, modular Java code
-* Handling edge cases & validations
+<p align="center">
+  <img src="assets/Screenshot 2026-05-18 155630.png" width="500"/>
+</p>
 
----
+## 🚀 Future Scope
 
-## Future Improvements
+* Spring Boot REST API
+* MySQL/PostgreSQL integration
+* Web dashboard
+* Multi-user loan processing
+* AI-based risk prediction
 
-* REST API integration
-* Database support
-* Web UI / Dashboard
-* Multi-user concurrency handling
-
----
-
-## Author
+## 👨‍💻 Author
 
 **Robinpreet Singh Chahal**
-Aspiring Software Engineer :)
+
+> Coffee & Code Under the Palm 🌴☕
 
 ---
 
-⭐ If you found this project interesting, feel free to star it!
+⭐ If you found the project interesting, consider giving it a star!
