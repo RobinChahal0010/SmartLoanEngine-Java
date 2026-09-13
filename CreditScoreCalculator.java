@@ -25,5 +25,16 @@ public class CreditScoreCalculator {
 
         return Math.max(300,Math.min(score,900));
     }
+     public static String getCreditRating(int score) {
+        if (score >= 800) {
+            return "EXCELLENT";
+        } else if (score >= 700) {
+            return "GOOD";
+        } else if (score >= 600) {
+            return "FAIR";
+        } else {
+            return "POOR";
+        }
+    }
     
 }

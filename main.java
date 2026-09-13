@@ -7,37 +7,96 @@ public class main {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("================================");
-        System.out.println("      SMART LOAN ENGINE");
+        System.out.println("        SMART LOAN ENGINE");
         System.out.println("================================");
 
-        System.out.print("Enter Average Bank Balance: ");
+        // AVERAGE BALANCE
+        System.out.print(
+            "Enter Average Bank Balance: "
+        );
+
         double avgBalance = sc.nextDouble();
 
-        double[] transactions = new double[5];
+        // ACCOUNT AGE
+        System.out.print(
+            "Enter Account Age (years): "
+        );
 
-        System.out.println("Enter yearly transactions for 5 years:");
-
-        for(int i = 0; i < 5; i++) {
-            System.out.print("Year " + (i + 1) + ": ");
-            transactions[i] = sc.nextDouble();
-        }
-
-        System.out.print("Enter Account Age (years): ");
         int yearsActive = sc.nextInt();
 
-        System.out.print("Enter number of failed transactions: ");
-        int failedTransactions = sc.nextInt();
+        // BASIC ACCOUNT AGE VALIDATION
+        if(yearsActive <= 0) {
 
-        System.out.print("Enter Monthly Income: ");
-        double monthlyIncome = sc.nextDouble();
+            System.out.println("\nInvalid Account Age");
 
-        System.out.print("Enter Existing EMI: ");
-        double existingEMI = sc.nextDouble();
+            sc.close();
+            return;
+        }
 
-        System.out.print("Enter Requested Loan Amount: ");
-        double requestedLoan = sc.nextDouble();
+        // DYNAMIC TRANSACTION ARRAY
+        double[] transactions =
+            new double[yearsActive];
 
-        // Loan Type Selection
+        System.out.println(
+            "\nEnter yearly transactions " +
+            "for " + yearsActive + " years:"
+        );
+
+        for(int i = 0; i < yearsActive; i++) {
+
+            System.out.print(
+                "Year " + (i + 1) + ": "
+            );
+
+            transactions[i] =
+                sc.nextDouble();
+
+            // NEGATIVE TRANSACTION CHECK
+            if(transactions[i] < 0) {
+
+                System.out.println(
+                    "\nTransaction amount " +
+                    "cannot be negative."
+                );
+
+                sc.close();
+                return;
+            }
+        }
+
+        // FAILED TRANSACTIONS
+        System.out.print(
+            "\nEnter number of failed transactions: "
+        );
+
+        int failedTransactions =
+            sc.nextInt();
+
+        // MONTHLY INCOME
+        System.out.print(
+            "Enter Monthly Income: "
+        );
+
+        double monthlyIncome =
+            sc.nextDouble();
+
+        // EXISTING EMI
+        System.out.print(
+            "Enter Existing EMI: "
+        );
+
+        double existingEMI =
+            sc.nextDouble();
+
+        // REQUESTED LOAN
+        System.out.print(
+            "Enter Requested Loan Amount: "
+        );
+
+        double requestedLoan =
+            sc.nextDouble();
+
+        // LOAN TYPE
         System.out.println("\nSelect Loan Type:");
         System.out.println("1. CAR");
         System.out.println("2. HOME");
@@ -62,22 +121,43 @@ public class main {
                 break;
 
             default:
-                System.out.println("Invalid Loan Type");
+
+                System.out.println(
+                    "\nInvalid Loan Type"
+                );
+
                 sc.close();
                 return;
         }
 
-        // Input Validation
+        // GLOBAL INPUT VALIDATION
         if(avgBalance < 0 ||
            monthlyIncome <= 0 ||
-           requestedLoan <= 0) {
+           requestedLoan <= 0 ||
+           existingEMI < 0 ||
+           failedTransactions < 0) {
 
-            System.out.println("Invalid Input");
+            System.out.println(
+                "\nInvalid Input Values"
+            );
+
             sc.close();
             return;
         }
 
-        // Create Customer Object
+        // EMI VS INCOME VALIDATION
+        if(existingEMI > monthlyIncome) {
+
+            System.out.println(
+                "\nExisting EMI cannot " +
+                "exceed monthly income."
+            );
+
+            sc.close();
+            return;
+        }
+
+        // CREATE CUSTOMER OBJECT
         Customer c = new Customer(
             avgBalance,
             transactions,
@@ -89,12 +169,37 @@ public class main {
             type
         );
 
-        // Calculate Credit Score
+        // CREDIT SCORE CALCULATION
         int score =
-            CreditScoreCalculator.calculateScore(c);
+            CreditScoreCalculator
+                .calculateScore(c);
+                String rating =
+    CreditScoreCalculator
+        .getCreditRating(score);
 
-        // Evaluate Loan
-        LoanService.evaluateLoan(c, score);
+System.out.println("\n================================");
+System.out.println("        CREDIT REPORT");
+System.out.println("================================");
+System.out.println("Credit Score  : " + score);
+System.out.println("Credit Rating : " + rating);
+System.out.println("================================");
+double averageTransaction =
+        FraudDetectionService.calculateAverage(transactions);
+
+double maximumTransaction =
+        FraudDetectionService.findMaximum(transactions);
+
+System.out.println("\n================================");
+System.out.println("       TRANSACTION ANALYSIS");
+System.out.println("================================");
+
+System.out.println("Average Transaction : ₹" + averageTransaction);
+System.out.println("Largest Transaction : ₹" + maximumTransaction);
+        // LOAN EVALUATION
+        LoanService.evaluateLoan(
+            c,
+            score
+        );
 
         sc.close();
     }

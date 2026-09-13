@@ -1,10 +1,85 @@
 public class LoanService {
 
+    private static final double EMI_LIMIT = 0.40;
+    
+
     public static void evaluateLoan(Customer c, int score) {
 
-        if(c.monthlyIncome <= 0 || c.requestedLoan <= 0) {
-            System.out.println("Invalid Input");
+        // BASIC VALIDATIONS
+        if(c.monthlyIncome <= 0 ||
+           c.requestedLoan <= 0 ||
+           c.avgBalance < 0) {
+
+            System.out.println("\n================================");
+            System.out.println("         INVALID INPUT");
+            System.out.println("================================");
+
+            System.out.println(
+                "Income, balance and loan amount " +
+                "must be valid positive values."
+            );
+
             return;
+        }
+
+        // BUSINESS VALIDATION
+        if(c.yearsActive < c.yearlyTransactions.length) {
+
+            System.out.println("\n================================");
+            System.out.println("         INVALID DATA");
+            System.out.println("================================");
+
+            System.out.println(
+                "Account age cannot be less than " +
+                "transaction history years."
+            );
+
+            return;
+        }
+
+        // FAILED TRANSACTION VALIDATION
+        if(c.failedTransactions < 0) {
+
+            System.out.println("\n================================");
+            System.out.println("         INVALID INPUT");
+            System.out.println("================================");
+
+            System.out.println(
+                "Failed transactions cannot be negative."
+            );
+
+            return;
+        }
+
+        // EMI VALIDATION
+        if(c.existingEMI > c.monthlyIncome) {
+
+            System.out.println("\n================================");
+            System.out.println("         INVALID INPUT");
+            System.out.println("================================");
+
+            System.out.println(
+                "Existing EMI cannot exceed monthly income."
+            );
+
+            return;
+        }
+
+        // TRANSACTION VALIDATION
+        for(double amount : c.yearlyTransactions) {
+
+            if(amount < 0) {
+
+                System.out.println("\n================================");
+                System.out.println("         INVALID INPUT");
+                System.out.println("================================");
+
+                System.out.println(
+                    "Transaction amounts cannot be negative."
+                );
+
+                return;
+            }
         }
 
         int tenure = 0;
@@ -20,17 +95,12 @@ public class LoanService {
             }
             else {
 
-                System.out.println("\n================================");
-                System.out.println("         LOAN REJECTED");
-                System.out.println("================================");
-
-                System.out.println("Loan Type: HOME");
-                System.out.println("Risk Category: " +
-                    RiskAnalyzer.getRisk(score));
-
-                System.out.println("\nReason: Low Credit Score");
-                System.out.println("Minimum Required Score: 700");
-                System.out.println("Your Score: " + score);
+                rejectLoan(
+                    "HOME",
+                    score,
+                    "Low Credit Score",
+                    "Minimum Required Score: 700"
+                );
 
                 return;
             }
@@ -47,17 +117,12 @@ public class LoanService {
             }
             else {
 
-                System.out.println("\n================================");
-                System.out.println("         LOAN REJECTED");
-                System.out.println("================================");
-
-                System.out.println("Loan Type: CAR");
-                System.out.println("Risk Category: " +
-                    RiskAnalyzer.getRisk(score));
-
-                System.out.println("\nReason: Low Credit Score");
-                System.out.println("Minimum Required Score: 600");
-                System.out.println("Your Score: " + score);
+                rejectLoan(
+                    "CAR",
+                    score,
+                    "Low Credit Score",
+                    "Minimum Required Score: 600"
+                );
 
                 return;
             }
@@ -71,26 +136,25 @@ public class LoanService {
             }
             else {
 
-                System.out.println("\n================================");
-                System.out.println("         LOAN REJECTED");
-                System.out.println("================================");
-
-                System.out.println("Loan Type: EDUCATION");
-                System.out.println("Risk Category: " +
-                    RiskAnalyzer.getRisk(score));
-
-                System.out.println("\nReason: Low Credit Score");
-                System.out.println("Minimum Required Score: 550");
-                System.out.println("Your Score: " + score);
+                rejectLoan(
+                    "EDUCATION",
+                    score,
+                    "Low Credit Score",
+                    "Minimum Required Score: 550"
+                );
 
                 return;
             }
         }
 
-        // Dynamic Interest Rate
+        // DYNAMIC INTEREST RATE
         double interest =
-            InterestRateCalculator.getRate(score, c.loanType);
+            InterestRateCalculator.getRate(
+                score,
+                c.loanType
+            );
 
+        // EMI CALCULATION
         double emi =
             EMICalculator.calculateEMI(
                 c.requestedLoan,
@@ -101,25 +165,28 @@ public class LoanService {
         double totalEMI = emi + c.existingEMI;
 
         // EMI BURDEN CHECK
-        if(totalEMI > 0.4 * c.monthlyIncome) {
+        if(totalEMI >
+           EMI_LIMIT * c.monthlyIncome) {
 
-            System.out.println("\n================================");
-            System.out.println("         LOAN REJECTED");
-            System.out.println("================================");
-
-            System.out.println("Loan Type: " + c.loanType);
-            System.out.println("Risk Category: " +
-                RiskAnalyzer.getRisk(score));
-
-            System.out.println("\nReason: High EMI Burden");
-            System.out.println(
+            rejectLoan(
+                c.loanType.toString(),
+                score,
+                "High EMI Burden",
                 "Total EMI exceeds 40% income limit"
             );
 
             return;
         }
 
-        // Add approved loan to history
+        // ELIGIBILITY PERCENTAGE
+        double eligibility =
+            Math.min(
+                100,
+                (c.monthlyIncome /
+                (totalEMI + 1)) * 100
+            );
+
+        // ADD APPROVED LOAN TO HISTORY
         c.loanHistory.add(
             new LoanRecord(
                 c.loanType.toString(),
@@ -133,22 +200,79 @@ public class LoanService {
         System.out.println("      LOAN APPROVAL RESULT");
         System.out.println("================================");
 
-        System.out.println("Loan Type: " + c.loanType);
+        System.out.println(
+            "Loan Type: " + c.loanType
+        );
 
-        System.out.println("CIBIL Score: " + score);
+        System.out.println(
+            "CIBIL Score: " + score
+        );
 
-        System.out.println("Risk Category: " +
-            RiskAnalyzer.getRisk(score));
+        System.out.println(
+            "Risk Category: " +
+            RiskAnalyzer.getRisk(score)
+        );
 
-        System.out.println("\nLOAN APPROVED [SUCCESS]");
+        System.out.println(
+            "\nLOAN APPROVED [SUCCESS]"
+        );
 
-        System.out.println("Interest Rate: " +
-            interest + "%");
+        System.out.println(
+            "Interest Rate: " +
+            interest + "%"
+        );
 
-        System.out.println("Tenure: " +
-            tenure + " years");
+        System.out.println(
+            "Tenure: " +
+            tenure + " years"
+        );
 
-        System.out.println("Monthly EMI: Rs " +
-            String.format("%.2f", emi));
+        System.out.println(
+            "Monthly EMI: Rs " +
+            String.format("%.2f", emi)
+        );
+
+        System.out.println(
+            "Total Monthly EMI: Rs " +
+            String.format("%.2f", totalEMI)
+        );
+
+        System.out.println(
+            "Eligibility Strength: " +
+            String.format("%.2f", eligibility) +
+            "%"
+        );
+    }
+
+    // COMMON REJECTION METHOD
+    private static void rejectLoan(
+        String loanType,
+        int score,
+        String reason,
+        String details
+    ) {
+
+        System.out.println("\n================================");
+        System.out.println("         LOAN REJECTED");
+        System.out.println("================================");
+
+        System.out.println(
+            "Loan Type: " + loanType
+        );
+
+        System.out.println(
+            "Risk Category: " +
+            RiskAnalyzer.getRisk(score)
+        );
+
+        System.out.println(
+            "\nReason: " + reason
+        );
+
+        System.out.println(details);
+
+        System.out.println(
+            "Your Score: " + score
+        );
     }
 }
