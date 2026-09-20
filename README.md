@@ -99,7 +99,7 @@ Monthly EMI   : ₹20,050
 
 
 
-### ✅ Approved
+
 
 <p align="center">
   <img src="assets/Screenshot 2026-05-18 155802.png" width="500"/>
