@@ -211,6 +211,26 @@ switch (type) {
     default:
         interestRate = 10.0;
 }
+double eligibleAmount =
+        LoanEligibilityEngine.calculateEligibleLoan(
+                monthlyIncome,
+                existingEMI,
+                interestRate
+        );
+
+System.out.println("\n================================");
+System.out.println("      LOAN ELIGIBILITY");
+System.out.println("================================");
+System.out.printf("Eligible Amount : ₹%.2f%n", eligibleAmount);
+System.out.printf("Requested Amount: ₹%.2f%n", requestedLoan);
+
+if (requestedLoan <= eligibleAmount) {
+    System.out.println("Eligibility     : WITHIN LIMIT");
+} else {
+    System.out.println("Eligibility     : EXCEEDS LIMIT");
+}
+
+System.out.println("================================");
         LoanService.evaluateLoan(
             c,
             score
