@@ -196,6 +196,21 @@ System.out.println("================================");
 System.out.println("Average Transaction : ₹" + averageTransaction);
 System.out.println("Largest Transaction : ₹" + maximumTransaction);
         // LOAN EVALUATION
+        double interestRate;
+
+switch (type) {
+    case CAR:
+        interestRate = 10.0;
+        break;
+    case HOME:
+        interestRate = 8.5;
+        break;
+    case EDUCATION:
+        interestRate = 7.5;
+        break;
+    default:
+        interestRate = 10.0;
+}
         LoanService.evaluateLoan(
             c,
             score
