@@ -97,19 +97,12 @@ Monthly EMI   : ₹20,050
 
 **Java • OOP • Arrays • Mathematical Modeling**
 
-## 📸 Screenshots
 
-### ✅ Approved
 
-<p align="center">
-  <img src="assets/Screenshot 2026-05-18 155802.png" width="500"/>
-</p>
 
-### ❌ Rejected
 
-<p align="center">
-  <img src="assets/Screenshot 2026-05-18 155630.png" width="500"/>
-</p>
+
+
 
 ## 🚀 Future Scope
 
