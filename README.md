@@ -1,4 +1,4 @@
-**<h1 align="center">💳 Smart Loan Engine</h1>
+<h1 align="center">💳 Smart Loan Engine</h1>
 
 <p align="center">
   A real-world inspired loan approval & risk analysis system built with Core Java ☕
